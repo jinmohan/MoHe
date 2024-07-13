@@ -227,7 +227,7 @@
     <script>
         // 随机选择背景图片
         function setRandomBackground() {
-            const totalImages = 14;
+            const totalImages = 36;
             const randomIndex = Math.floor(Math.random() * totalImages) + 1;
             document.body.style.backgroundImage = `url('background${randomIndex}.jpg')`;
         }
@@ -250,8 +250,8 @@
         // 设置初始背景
         setRandomBackground();
 
-        // 定时更换背景图片（每隔30秒）
-        setInterval(setRandomBackground, 30000);
+        // 定时更换背景图片（每隔14秒）
+        setInterval(setRandomBackground, 14000);
     </script>
 </body>
 
