@@ -1,0 +1,223 @@
+<!doctype html>
+<!--参考"https://blog.csdn.net/zhangawei123/article/details/127704302"编写-->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <title>电子木鱼</title>
+    <style>
+        body {
+            background-color: black;
+            height: 200px;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            padding-top: 150px;
+        }
+
+        #main {
+            display: column;
+        }
+
+        #str {
+            color: white;
+        }
+
+        #str:hover {
+            cursor: default;
+        }
+
+        #addStr {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /*点击木鱼的收缩效果*/
+        @keyframes addAnimate {
+            50% {
+                transform: scale(0.8);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /*功德+1文字效果*/
+        @keyframes p {
+            0% {
+                color: transparent;
+            }
+
+            100% {
+                color: white;
+                transform: translate(0px, -100px);
+            }
+        }
+
+        .n4 {
+            color: transparent;
+            position: absolute;
+            top: 200px;
+            left: 45%;
+            animation: p 1s;
+        }
+
+        #modal {
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            /*padding-top: 230px;*/
+            display: flex;
+            justify-content: center;
+            align-items: 20%;
+            display: none;
+        }
+
+        #modalMain {
+            width: 20%;
+            height: 12%;
+            background-color: white;
+            margin: auto;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        #modalClose {
+            width: 18px;
+            height: 18px;
+            float: right;
+            margin-right: 15px;
+            margin-top: 10px;
+            background-color: rgb(252, 44, 44);
+            border-radius: 180px;
+        }
+
+        #modalClose:hover {
+            cursor: default;
+        }
+
+        #modalText {
+            position: absolute;
+            font-size: 25px;
+            margin-top: 44px;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100px;
+            height: 20px;
+            border-top-style: none;
+            border-left-style: none;
+            border-right-style: none;
+            border-bottom-color: rgb(159, 159, 159);
+            font-size: 24px;
+        }
+
+        @media screen and (max-width:980px) {
+            #modalMain {
+                width: 60%;
+            }
+
+            input {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p id="str">功德：<span id="gd"></span></p>
+    <div id="container">
+        <div id="main">
+            <div id="addStr">
+                <!--这里显示"功德+1"-->
+            </div>
+            <div id="image">
+                <img src="image/电子木鱼.jpg">
+            </div>
+        </div>
+    </div>
+    <audio src="audio/电子木鱼敲击声.mp3" id="audio"></audio>
+    <div id="modal">
+        <div id="modalMain">
+            <span id="modalClose"></span>
+            <div id="modalText">功德+<input value="1" maxlength="17"><!--maxlength属性限制长度-->
+            </div>
+        </div>
+    </div>
+    <script src="jQuery.js"></script>
+    <script>
+        $("#image").click(function() {
+            //获取元素
+            var image = document.getElementsByTagName("img")[0];
+            var audio = document.getElementById("audio")
+            var inputValue = document.getElementsByTagName("input")[0].value
+
+            //播放音频
+            audio.play()
+
+            //给#image添加动画效果
+            image.style.animation = "addAnimate 0.3s"
+            //防止会动画一直执行，添加延时清空动画
+            setTimeout(stopImageAnimation, 300)
+            //延时暂停音频 
+            setTimeout(stopAudio, 150)
+
+            //添加一个p标签来显示"功德+1"
+            var p = document.createElement("p")
+            p.innerHTML = "功德+"
+            p.className = "n4"
+            p.append(inputValue)
+            document.body.appendChild(p)
+            //增加功德总数
+            if ($("#gd").text() == "") {
+                $("#gd").text(0)
+                $("#gd").text(parseInt($("#gd").text()) + parseInt($("input").val()))
+            } else {
+                $("#gd").text(parseInt($("#gd").text()) + parseInt($("input").val()))
+            }
+
+            //清空动画函数
+            function stopImageAnimation() {
+                image.style.animation = ''
+            }
+            //暂停音频函数
+            function stopAudio() {
+                audio.pause()
+            }
+        })
+    </script>
+    <!--模态框相关脚本-->
+    <script>
+        $("#str").click(function() {
+            $("#modal").css("display", "block")
+        })
+        $("#modalClose").click(function() {
+
+            if ($("input").val() == "") {
+                $("input").val(0)
+                $("#modal").css("display", "none")
+            } else {
+                if (isNaN($("input").val())) {
+                    alert("NaN")
+                    $("input").val("")
+                } else {
+                    $("#modal").css("display", "none")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

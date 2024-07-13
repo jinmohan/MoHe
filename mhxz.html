@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title>三维旋转</title>
+    <style>
+        .div {
+            perspective: 500;
+            -webkit-perspective: 500;
+            width: 100%;
+            height: 100%;
+            animation-name: float;
+            animation-duration: 1.75s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .rotate {
+            animation-name: rotate;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            width: 250px;
+            height: 250px;
+            margin-left: calc(50% - 125px);
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(360deg);
+            }
+
+            25% {
+                transform: rotateY(270deg);
+            }
+
+            50% {
+                transform: rotateY(180deg);
+            }
+
+            75% {
+                transform: rotateY(90deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+
+        .shadow {
+            width: 128px;
+            height: 128px;
+            margin-left: calc(50% - 64px);
+            border-radius: 128px;
+            background-color: #999999;
+            transform: rotateX(75deg);
+            animation-name: blur;
+            animation-duration: 1.75s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes blur {
+            0% {
+                filter: blur(48px);
+            }
+
+            50% {
+                filter: blur(24px);
+            }
+
+            100% {
+                filter: blur(48px);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(24px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .button {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            border: none;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 8px 0 0 0;
+            transition: 0.1s;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;margin: 32px 0;" id="title"></h2>
+    <div class="div">
+        <img src="favicon.png" class="rotate" id="rotate">
+    </div>
+    <div class="shadow"></div>
+    <h3 style="margin: 16px;text-align: center;" id="timer"></h3>
+    <p style="margin: 16px;text-align: center;">Made by Burger Studio.</p>
+    <button class="button" id="switchModeBtn">切换为手动</button>
+    <audio src="Funky Town.m4a" autoplay="autoplay" loop="loop" id="music"></audio>
+    <script>
+        name = "墨核";
+        document.documentElement.addEventListener("click", function() {
+            document.getElementById('music').play();
+        });
+        var startTime = new Date();
+
+        function freshTime() {
+            var nowTime = new Date();
+            var runTime = parseInt((nowTime.getTime() - startTime.getTime()) / 1000);
+            runD = parseInt(runTime / (24 * 60 * 60));
+            runH = parseInt(runTime / (60 * 60) % 24);
+            runM = parseInt(runTime / 60 % 60);
+            runS = parseInt(runTime % 60);
+            if (runH < 10) {
+                runH = "0" + runH;
+            }
+            if (runM < 10) {
+                runM = "0" + runM;
+            }
+            if (runS < 10) {
+                runS = "0" + runS;
+            }
+            document.getElementById("timer").innerHTML = runD + " : " + runH + " : " + runM + " : " + runS;
+        }
+        var sh;
+        sh = setInterval(freshTime, 10);
+        var btn = document.getElementById('switchModeBtn');
+        btn.addEventListener("touchstart", function() {
+            btn.style.background = "rgba(0,0,0,0.2)";
+        });
+        btn.addEventListener("mousedown", function() {
+            btn.style.background = "rgba(0,0,0,0.2)";
+        });
+        btn.addEventListener("touchend", function() {
+            window.setTimeout('btn.style.background="white";', 100);
+        });
+        btn.addEventListener("mouseup", function() {
+            window.setTimeout('btn.style.background="white";', 100);
+        });
+        mode = "auto";
+        btn.addEventListener("click", function() {
+            if (mode == "auto") {
+                mode = "self";
+                speed = "slow";
+                btn.innerHTML = "切换为自动";
+            } else if (mode == "self") {
+                mode = "auto";
+                btn.innerHTML = "切换为手动";
+            }
+        });
+        window.setInterval("checkMode();", 1);
+        var title = document.getElementById('title');
+
+        function checkMode() {
+            if (mode == "auto") {
+                tran = 1.25;
+                title.innerHTML = name + " 无限旋转";
+            } else if (mode == "self") {
+                title.innerHTML = "长按为 " + name + " 加速";
+                if (speed == "fast" && tran > 0.01) {
+                    tran -= 0.001;
+                } else if (speed == "slow") {
+                    tran += 0.001;
+                }
+            }
+            document.getElementById('rotate').style.animationDuration = tran + "s";
+        }
+        document.documentElement.addEventListener("touchstart", function() {
+            if (mode == "self") {
+                speed = "fast";
+            }
+        });
+        document.documentElement.addEventListener("mousedown", function() {
+            if (mode == "self") {
+                speed = "fast";
+            }
+        });
+        document.documentElement.addEventListener("touchend", function() {
+            if (mode == "self") {
+                speed = "slow";
+            }
+        });
+        document.documentElement.addEventListener("mouseup", function() {
+            if (mode == "self") {
+                speed = "slow";
+            }
+        });
+    </script>
+</body>
+
+</html>
