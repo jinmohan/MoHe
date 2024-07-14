@@ -171,55 +171,72 @@
 
 <body>
     <nav>
+        <!-- Logo 区域 -->
         <div>
             <img src="logo.png" class="logo" alt="Logo">
         </div>
+        <!-- 导航菜单 -->
         <ul>
-            <li onclick="showSection('about')"> <img src="My.svg" alt="M"> <span>自我介绍</span> </li>
-            <li onclick="showSection('achievements')"> <img src="D.svg" alt="H"><span>我的成果</span> </li>
-            <li onclick="showSection('websites')"> <img src="SHOU.svg" alt="S"> <span>我的网站</span></li>
-            <li onclick="showSection('games')"> <img src="M.svg" alt="M"><span>我的游戏</span> </li>
+            <!-- 主页 -->
+            <li onclick="showSection('about')"> 
+                <img src="My.svg" alt="M"> <!-- 图标 -->
+                <span>主页</span> <!-- 文字说明 -->
+            </li>
+            <!-- 我的成果 -->
+            <li onclick="showSection('achievements')"> 
+                <img src="D.svg" alt="H"> <!-- 图标 -->
+                <span>我的成果</span> <!-- 文字说明 -->
+            </li>
+            <!-- Ai -->
+            <li onclick="showSection('websites')"> 
+                <img src="SHOU.svg" alt="S"> <!-- 图标 -->
+                <span>Ai</span> <!-- 文字说明 -->
+            </li>
+            <!-- 摸鱼 -->
+            <li onclick="showSection('games')"> 
+                <img src="M.svg" alt="M"> <!-- 图标 -->
+                <span>摸鱼</span> <!-- 文字说明 -->
+            </li>
         </ul>
     </nav>
+    
 
     <div class="content">
         <div id="about" class="section active">
-            <h2>自我介绍</h2>
+            <h2>主页</h2>
             <img src="avatar.png" alt="Avatar">
             <p>你好，我是Aumh，这里是我的网站</p>
             <a href="https://space.bilibili.com/1597566435?spm_id_from=333.1007.0.0" target="_blank" class="btn">访问我的b站</a>
-            <a href="https://wwo.lanzout.com/b00654pcgf" target="_blank" class="btn">软件更新</a>
-            <a href="https://wwo.lanzout.com/b00654pcgf" target="_blank" class="btn">密码666</a>
+            <div class="btn-container"></div>
+            <button class="btn" onclick="openPage('zyhq/zyhq.html')">UP主资源提取</button>
         </div>
         <div id="achievements" class="section">
             <h2>我的成果</h2>
-            <p>本人会使用java&SpringCloud&Redis&Mysqi&RabbitMQ&Pythone&C++&Web&html
-
-                APP：Nex Web&MH-Ai&资源魔盒&墨核</p>
+            <p>本人会使用java&SpringCloud&Redis&Mysqi&RabbitMQ&Python&C++&Web&html<p>
+            <p>APP：Nex Web&MH-Ai&资源魔盒&墨核</p>
             <a href="https://space.bilibili.com/1597566435?spm_id_from=333.1007.0.0" target="_blank" class="btn">访问我的b站</a>
+            <div class="btn-container"></div>
+            <button class="btn" onclick="openPage('welcome.html')">网站服务器后台</button>
         </div>
         <div id="websites" class="section">
-            <h2>我的网站</h2>
-            <p>网站这里就是啊！</p>
+            <h2>Ai</h2>
+            <p>收集了目前还算比较好用的Ai</p>
             <a href="https://share.freegpts.org/list" target="_blank" class="btn">Ai1</a>
             <a href="https://agi.ylsap.com" target="_blank" class="btn">Ai2</a>
             <a href="https://chat4.free2gpt.xyz/" target="_blank" class="btn">Ai3</a>
             <a href="https://2en8.ai8988.top/c.html" target="_blank" class="btn">Ai4</a>
         </div>
         <div id="games" class="section">
-            <h2>我的游戏</h2>
-            <p>介绍我的游戏。</p>
+            <h2>摸鱼</h2>
+            <p>目前功能正在完善</p>
             <a href="http://zn.y8.com" target="_blank" class="btn">网络游戏</a>
-            <div class="btn-container">
-                <button class="btn" onclick="openPage('welcome.html')">软件后台</button>
                 <button class="btn" onclick="openPage('mhxz.html')">墨核旋转</button>
                 <button class="btn" onclick="openPage('dzmy.html')">电子木鱼</button>
                 <button class="btn" onclick="openPage('mnygl.html')">木乃伊归来</button>
                 <button class="btn" onclick="openPage('elsfk.html')">俄罗斯方块</button>
                 <button class="btn" onclick="openPage('3dmf.html')">3D魔方</button>
-                <button class="btn" onclick="openPage('ylgy.html')">羊了个羊</button>
-                <button class="btn" onclick="openPage('zzkf.html')">正在开发</button>
-                <button class="btn" onclick="openPage('tsgn.html')">主要功能</button>
+                <button class="btn" onclick="openPage('zzkf.html')">....正在开发</button>
+                <button class="btn" onclick="openPage('tsgn.html')">核心功能</button>
             </div>
         </div>
     </div>
@@ -240,7 +257,7 @@
         }
 
         function openBaidu() {
-            window.open('https://www.baidu.com', '_blank');
+            window.open('https://www.aumh.top', '_blank');
         }
 
         function openPage(page) {
@@ -256,3 +273,18 @@
 </body>
 
 </html>
+<!新手小白第一次开发网站很多功能做的不好有BUG是正常的。如有发现bug可以向哔哩哔哩反馈，或给我发微信我的微信号：base64：QXVtaHpo   2024714 ->
+<!-- 
+       　  　▃▆█▇▄▖
+　 　 　 ▟◤▖　　　◥█▎
+   　 ◢◤　 ▐　　　 　▐▉
+　 ▗◤　　　▂　▗▖　　▕█▎
+　◤　▗▅▖◥▄　▀◣　　█▊
+▐　▕▎◥▖◣◤　　　　◢██
+█◣　◥▅█▀　　　　▐██◤
+▐█▙▂　　     　◢██◤
+◥██◣　　　　◢▄◤
+ 　　▀██▅▇▀
+
+
+-->
