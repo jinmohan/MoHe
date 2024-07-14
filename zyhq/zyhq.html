@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源获取</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            font-weight: 500;
+            font-size: 24px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            transition: box-shadow 0.3s;
+        }
+
+        .input-group input:focus {
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.8);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #66a6ff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 3s ease-out;
+        }
+
+        .button:hover {
+            background-color: #5794e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .button:active {
+            background-color: #497ac3;
+            transform: translateY(1px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>请输入提取码</h1>
+        <div class="input-group">
+            <input type="text" id="pageIdInput" placeholder="输入提取码" />
+        </div>
+        <button class="button" onclick="openPage()">打开</button>
+    </div>
+    <script>
+        function openPage() {
+            var pageId = document.getElementById("pageIdInput").value;
+            var pageUrl = pageId + ".html";
+            window.location.href = pageUrl;
+        }
+    </script>
+</body>
+</html>
