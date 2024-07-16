@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源获取站点</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 10px;
+            max-width: 900px; /* 修正了 max-width 的值 */
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 20px; /* 修正了 padding 的值 */
+            border: 2px solid #333;
+            border-radius: 24px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+        }
+        .code-wrapper {
+            margin-bottom: 20px;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        pre {
+            margin: 0;
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 5px;
+            background-color: #2d2d2d;
+            color: #ffffff;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 14px;
+            color: #dcdcdc;
+        }
+        .copy-btn {
+            background-color: #7e7e7ead;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #e68900;
+        }
+        .visit-btn {
+            background-color: #71c6ee;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .visit-btn:hover {
+            background-color: #4bbaf1;
+        }
+        .visit-btn:active {
+            background-color: #a4d9f8;
+        }
+        h1 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #cccccc;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到资源获取站点</h1>
+        <p>首先感谢bzyapp大佬的软件支持</p>
+        <p>ↆↆↆↆↆↆↆↆ获取学习应用示例代码</p>
+    </header>
+
+    <section>
+        <div class="code-wrapper">
+            <pre><code id="code-snippet">
+                &lt;!DOCTYPE html&gt;
+                &lt;html lang="en"&gt;
+                &lt;head&gt;
+                    &lt;meta charset="UTF-8"&gt;
+                    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                    &lt;title&gt;学习应用&lt;/title&gt;
+                    &lt;style&gt;
+                        /* 页面整体样式 */
+                        body {
+                            font-family: Arial, sans-serif; /* 设置字体 */
+                            background-color: #f0f0f0; /* 设置背景色 */
+                            padding: 20px; /* 页面内边距 */
+                        }
+                        /* 应用容器样式 */
+                        .app-container {
+                            background-color: #fff; /* 容器背景色 */
+                            border-radius: 10px; /* 圆角边框 */
+                            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 阴影效果 */
+                            padding: 20px; /* 内边距 */
+                            max-width: 600px; /* 最大宽度 */
+                            margin: 0 auto; /* 居中对齐 */
+                        }
+                        /* 头部样式 */
+                        .header {
+                            text-align: center; /* 文本居中 */
+                            padding: 10px 0; /* 上下内边距 */
+                            border-bottom: 1px solid #ccc; /* 底部边框 */
+                        }
+                        /* 菜单样式 */
+                        .menu {
+                            display: flex; /* 使用 Flex 布局 */
+                            justify-content: space-between; /* 项目之间平均分布 */
+                            margin-top: 20px; /* 上外边距 */
+                        }
+                        /* 菜单项样式 */
+                        .menu-item {
+                            padding: 10px 20px; /* 内边距 */
+                            background-color: #f0f0f0; /* 背景色 */
+                            border-radius: 5px; /* 圆角边框 */
+                            cursor: pointer; /* 鼠标样式 */
+                        }
+                        /* 内容区样式 */
+                        .content {
+                            margin-top: 20px; /* 上外边距 */
+                        }
+                        /* 底部样式 */
+                        .footer {
+                            text-align: center; /* 文本居中 */
+                            margin-top: 20px; /* 上外边距 */
+                            color: #888; /* 文本颜色 */
+                        }
+                    &lt;/style&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;!-- 应用容器 --&gt;
+                    &lt;div class="app-container"&gt;
+                        &lt;!-- 头部 --&gt;
+                        &lt;div class="header"&gt;
+                            &lt;h1&gt;学习应用&lt;/h1&gt; <!-- 应用的标题 -->
+                        &lt;/div&gt;
+                        &lt;!-- 菜单 --&gt;
+                        &lt;div class="menu"&gt;
+                            &lt;div class="menu-item"&gt;
+                                主页 <!-- 主页按钮 -->
+                            &lt;/div&gt;
+                            &lt;div class="menu-item"&gt;
+                                学习 <!-- 学习按钮 -->
+                            &lt;/div&gt;
+                            &lt;div class="menu-item"&gt;
+                                设置 <!-- 设置按钮 -->
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;!-- 内容区 --&gt;
+                        &lt;div class="content"&gt;
+                            &lt;h2&gt;欢迎使用学习应用！&lt;/h2&gt; <!-- 欢迎信息 -->
+                            &lt;p&gt;这是一个演示用的学习应用界面。&lt;/p&gt; <!-- 说明文字 -->
+                        &lt;/div&gt;
+                        &lt;!-- 底部 --&gt;
+                        &lt;div class="footer"&gt;
+                            &amp;copy; 2024 学习应用公司 <!-- 版权信息 -->
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/body&gt;
+                &lt;/html&gt;
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode('code-snippet')">复制</button>
+        </div>
+        <a href="https://www.123pan.com/s/tP0Mjv-xEr5v.html" target="_blank" class="visit-btn">下载</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Aumh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyCode(elementId) {
+            var codeBlock = document.getElementById(elementId);
+            var range = document.createRange();
+            range.selectNodeContents(codeBlock);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            
+            try {
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                var copyBtn = document.querySelector('.copy-btn');
+                copyBtn.textContent = '已复制';
+                setTimeout(function() {
+                    copyBtn.textContent = '复制代码';
+                }, 2000);
+            } catch (err) {
+                console.error('复制失败', err);
+            }
+        }
+    </script>
+</body>
+</html>
