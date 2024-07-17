@@ -8,14 +8,14 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 10px;
-            max-width: 900px; /* 修正了 max-width 的值 */
+            margin: 20px;
+            max-width: 800px;
             background-color: #121212;
             color: #e0e0e0;
-            padding: 20px; /* 修正了 padding 的值 */
-            border: 2px solid #333;
-            border-radius: 24px;
-            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         .code-wrapper {
             margin-bottom: 20px;
@@ -93,8 +93,7 @@
 <body>
     <header>
         <h1>欢迎来到资源获取站点</h1>
-        <p>首先感谢bzyapp大佬的软件支持</p>
-        <p>ↆↆↆↆↆↆↆↆ获取学习应用示例代码</p>
+        <p>ↆↆↆↆↆↆↆↆ获取</p>
     </header>
 
     <section>
@@ -105,116 +104,274 @@
                 &lt;head&gt;
                     &lt;meta charset="UTF-8"&gt;
                     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-                    &lt;title&gt;学习应用&lt;/title&gt;
+                    &lt;title&gt;扫雷游戏&lt;/title&gt;
                     &lt;style&gt;
-                        /* 页面整体样式 */
                         body {
-                            font-family: Arial, sans-serif; /* 设置字体 */
-                            background-color: #f0f0f0; /* 设置背景色 */
-                            padding: 20px; /* 页面内边距 */
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            font-family: Arial, sans-serif;
+                            background-color: #f0f0f0;
                         }
-                        /* 应用容器样式 */
-                        .app-container {
-                            background-color: #fff; /* 容器背景色 */
-                            border-radius: 10px; /* 圆角边框 */
-                            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 阴影效果 */
-                            padding: 20px; /* 内边距 */
-                            max-width: 600px; /* 最大宽度 */
-                            margin: 0 auto; /* 居中对齐 */
+                        .board {
+                            display: grid;
+                            gap: 2px;
+                            margin-top: 20px;
                         }
-                        /* 头部样式 */
-                        .header {
-                            text-align: center; /* 文本居中 */
-                            padding: 10px 0; /* 上下内边距 */
-                            border-bottom: 1px solid #ccc; /* 底部边框 */
+                        .cell {
+                            width: 30px;
+                            height: 30px;
+                            background-color: #e0e0e0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 16px;
+                            cursor: pointer;
+                            border-radius: 4px;
+                            box-shadow: 2px 2px 5px #c0c0c0, -2px -2px 5px #ffffff;
+                            transition: background-color 0.3s, box-shadow 0.3s;
                         }
-                        /* 菜单样式 */
-                        .menu {
-                            display: flex; /* 使用 Flex 布局 */
-                            justify-content: space-between; /* 项目之间平均分布 */
-                            margin-top: 20px; /* 上外边距 */
+                        .cell:hover {
+                            background-color: #d0d0d0;
+                            box-shadow: 1px 1px 3px #c0c0c0, -1px -1px 3px #ffffff;
                         }
-                        /* 菜单项样式 */
-                        .menu-item {
-                            padding: 10px 20px; /* 内边距 */
-                            background-color: #f0f0f0; /* 背景色 */
-                            border-radius: 5px; /* 圆角边框 */
-                            cursor: pointer; /* 鼠标样式 */
+                        .cell.revealed {
+                            background-color: #f0f0f0;
+                            box-shadow: inset 1px 1px 3px #c0c0c0, inset -1px -1px 3px #ffffff;
                         }
-                        /* 内容区样式 */
-                        .content {
-                            margin-top: 20px; /* 上外边距 */
+                        .cell.mine {
+                            background-color: #ff6b6b;
+                            box-shadow: inset 1px 1px 3px #c0c0c0, inset -1px -1px 3px #ffffff;
                         }
-                        /* 底部样式 */
-                        .footer {
-                            text-align: center; /* 文本居中 */
-                            margin-top: 20px; /* 上外边距 */
-                            color: #888; /* 文本颜色 */
+                        .cell.flag {
+                            color: #ff6b6b;
+                        }
+                        .cell.revealed.num1 { color: blue; }
+                        .cell.revealed.num2 { color: green; }
+                        .cell.revealed.num3 { color: red; }
+                        .cell.revealed.num4 { color: purple; }
+                        .cell.revealed.num5 { color: maroon; }
+                        .cell.revealed.num6 { color: turquoise; }
+                        .cell.revealed.num7 { color: black; }
+                        .cell.revealed.num8 { color: gray; }
+                        .timer {
+                            font-size: 24px;
+                            margin: 20px 0;
+                            color: #333;
+                        }
+                        .restart-btn, .difficulty-select {
+                            margin-bottom: 20px;
+                            padding: 10px 20px;
+                            font-size: 16px;
+                            cursor: pointer;
+                            border: none;
+                            border-radius: 8px;
+                            background-color: #e0e0e0;
+                            box-shadow: 2px 2px 5px #c0c0c0, -2px -2px 5px #ffffff;
+                            transition: background-color 0.3s, box-shadow 0.3s;
+                        }
+                        .restart-btn:hover, .difficulty-select:hover {
+                            background-color: #d0d0d0;
+                            box-shadow: 1px 1px 3px #c0c0c0, -1px -1px 3px #ffffff;
                         }
                     &lt;/style&gt;
                 &lt;/head&gt;
                 &lt;body&gt;
-                    &lt;!-- 应用容器 --&gt;
-                    &lt;div class="app-container"&gt;
-                        &lt;!-- 头部 --&gt;
-                        &lt;div class="header"&gt;
-                            &lt;h1&gt;学习应用&lt;/h1&gt; <!-- 应用的标题 -->
-                        &lt;/div&gt;
-                        &lt;!-- 菜单 --&gt;
-                        &lt;div class="menu"&gt;
-                            &lt;div class="menu-item"&gt;
-                                主页 <!-- 主页按钮 -->
-                            &lt;/div&gt;
-                            &lt;div class="menu-item"&gt;
-                                学习 <!-- 学习按钮 -->
-                            &lt;/div&gt;
-                            &lt;div class="menu-item"&gt;
-                                设置 <!-- 设置按钮 -->
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                        &lt;!-- 内容区 --&gt;
-                        &lt;div class="content"&gt;
-                            &lt;h2&gt;欢迎使用学习应用！&lt;/h2&gt; <!-- 欢迎信息 -->
-                            &lt;p&gt;这是一个演示用的学习应用界面。&lt;/p&gt; <!-- 说明文字 -->
-                        &lt;/div&gt;
-                        &lt;!-- 底部 --&gt;
-                        &lt;div class="footer"&gt;
-                            &amp;copy; 2024 学习应用公司 <!-- 版权信息 -->
-                        &lt;/div&gt;
-                    &lt;/div&gt;
+                    &lt;h1&gt;扫雷游戏&lt;/h1&gt;
+                    &lt;div class="timer"&gt;00:00&lt;/div&gt;
+                    &lt;select class="difficulty-select" onchange="changeDifficulty(this.value)"&gt;
+                        &lt;option value="easy"&gt;简单&lt;/option&gt;
+                        &lt;option value="medium"&gt;中等&lt;/option&gt;
+                        &lt;option value="hard"&gt;困难&lt;/option&gt;
+                    &lt;/select&gt;
+                    &lt;button class="restart-btn" onclick="initGame()"&gt;重启游戏&lt;/button&gt;
+                    &lt;div class="board" id="board"&gt;&lt;/div&gt;
+
+                    &lt;script&gt;
+                        let boardSize = 10;
+                        let numMines = 10;
+                        let board = [];
+                        let revealedCount = 0;
+                        let gameOver = false;
+                        let timerInterval;
+                        let startTime;
+
+                        function initGame() {
+                            clearInterval(timerInterval);
+                            document.querySelector('.timer').textContent = '00:00';
+                            gameOver = false;
+                            revealedCount = 0;
+                            board = createBoard(boardSize, numMines);
+                            renderBoard();
+                            startTime = new Date();
+                            timerInterval = setInterval(updateTimer, 1000);
+                        }
+
+                        function changeDifficulty(difficulty) {
+                            switch (difficulty) {
+                                case 'easy':
+                                    boardSize = 8;
+                                    numMines = 10;
+                                    break;
+                                case 'medium':
+                                    boardSize = 10;
+                                    numMines = 15;
+                                    break;
+                                case 'hard':
+                                    boardSize = 12;
+                                    numMines = 20;
+                                    break;
+                            }
+                            initGame();
+                        }
+
+                        function createBoard(size, mines) {
+                            let board = Array.from({ length: size }, () => Array(size).fill(0));
+                            let minePositions = new Set();
+                            while (minePositions.size < mines) {
+                                let x = Math.floor(Math.random() * size);
+                                let y = Math.floor(Math.random() * size);
+                                minePositions.add(`${x},${y}`);
+                            }
+                            minePositions.forEach(pos => {
+                                let [x, y] = pos.split(',').map(Number);
+                                board[x][y] = -1;
+                                for (let dx = -1; dx <= 1; dx++) {
+                                    for (let dy = -1; dy <= 1; dy++) {
+                                        let nx = x + dx;
+                                        let ny = y + dy;
+                                        if (nx >= 0 && nx < size && ny >= 0 && ny < size && board[nx][ny] !== -1) {
+                                            board[nx][ny]++;
+                                        }
+                                    }
+                                }
+                            });
+                            return board;
+                        }
+                
+                        function renderBoard() {
+                            const boardElement = document.getElementById('board');
+                            boardElement.innerHTML = '';
+                            boardElement.style.gridTemplateColumns = `repeat(${boardSize}, 30px)`;
+                            boardElement.style.gridTemplateRows = `repeat(${boardSize}, 30px)`;
+                            for (let i = 0; i < boardSize; i++) {
+                                for (let j = 0; j < boardSize; j++) {
+                                    const cell = document.createElement('div');
+                                    cell.classList.add('cell');
+                                    cell.dataset.row = i;
+                                    cell.dataset.col = j;
+                                    cell.addEventListener('click', handleCellClick);
+                                    cell.addEventListener('contextmenu', handleCellRightClick);
+                                    boardElement.appendChild(cell);
+                                }
+                            }
+                        }
+                
+                        function handleCellClick(e) {
+                            if (gameOver) return;
+                            const row = parseInt(e.target.dataset.row);
+                            const col = parseInt(e.target.dataset.col);
+                            revealCell(row, col);
+                        }
+                
+                        function handleCellRightClick(e) {
+                            e.preventDefault();
+                            if (gameOver) return;
+                            const cell = e.target;
+                            if (cell.classList.contains('flag')) {
+                                cell.classList.remove('flag');
+                            } else {
+                                cell.classList.add('flag');
+                            }
+                        }
+                
+                        function revealCell(row, col) {
+                            const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+                            if (cell.classList.contains('revealed') || cell.classList.contains('flag')) return;
+                            cell.classList.add('revealed');
+                            revealedCount++;
+                            if (board[row][col] === -1) {
+                                cell.classList.add('mine');
+                                endGame(false);
+                            } else {
+                                cell.textContent = board[row][col] === 0 ? '' : board[row][col];
+                                cell.classList.add(`num${board[row][col]}`);
+                                if (board[row][col] === 0) {
+                                    for (let dx = -1; dx <= 1; dx++) {
+                                        for (let dy = -1; dy <= 1; dy++) {
+                                            let nx = row + dx;
+                                            let ny = col + dy;
+                                            if (nx >= 0 && nx < boardSize && ny >= 0 && ny < boardSize) {
+                                                revealCell(nx, ny);
+                                            }
+                                        }
+                                    }
+                                }
+                                if (revealedCount === boardSize * boardSize - numMines) {
+                                    endGame(true);
+                                }
+                            }
+                        }
+                
+                        function endGame(win) {
+                            gameOver = true;
+                            clearInterval(timerInterval);
+                            const cells = document.querySelectorAll('.cell');
+                            cells.forEach(cell => {
+                                if (cell.classList.contains('flag')) return;
+                                const row = parseInt(cell.dataset.row);
+                                const col = parseInt(cell.dataset.col);
+                                if (board[row][col] === -1) {
+                                    cell.classList.add('mine');
+                                }
+                            });
+                            alert(win ? '恭喜你，你赢了！' : '游戏结束，你踩到地雷了！');
+                        }
+                
+                        function updateTimer() {
+                            const currentTime = new Date();
+                            const elapsedTime = new Date(currentTime - startTime);
+                            const minutes = elapsedTime.getUTCMinutes().toString().padStart(2, '0');
+                            const seconds = elapsedTime.getUTCSeconds().toString().padStart(2, '0');
+                            document.querySelector('.timer').textContent = `${minutes}:${seconds}`;
+                        }
+                
+                        initGame();
+                &lt;/script&gt;
                 &lt;/body&gt;
-                &lt;/html&gt;
-            </code></pre>
-            <button class="copy-btn" onclick="copyCode('code-snippet')">复制</button>
-        </div>
-        <a href="https://www.123pan.com/s/tP0Mjv-xEr5v.html" target="_blank" class="visit-btn">下载</a>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Aumh. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function copyCode(elementId) {
-            var codeBlock = document.getElementById(elementId);
-            var range = document.createRange();
-            range.selectNodeContents(codeBlock);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-
-            
-            try {
-                document.execCommand('copy');
+                &lt;/html&gt;</code></pre>  
+                <button class="copy-btn" onclick="copyCode('code-snippet')">复制</button>
+            </div>
+            <p>                                            </p>
+    
+            <a href="http://aumh.top" target="_blank" class="visit-btn">下载</a>
+        </section>
+    
+        <footer>
+            <p>&copy; 2024 Aumh. All rights reserved.</p>
+        </footer>
+    
+        <script>
+            function copyCode(elementId) {
+                var codeBlock = document.getElementById(elementId);
+                var range = document.createRange();
+                range.selectNodeContents(codeBlock);
                 window.getSelection().removeAllRanges();
-                var copyBtn = document.querySelector('.copy-btn');
-                copyBtn.textContent = '已复制';
-                setTimeout(function() {
-                    copyBtn.textContent = '复制代码';
-                }, 2000);
-            } catch (err) {
-                console.error('复制失败', err);
+                window.getSelection().addRange(range);
+    
+                try {
+                    document.execCommand('copy');
+                    window.getSelection().removeAllRanges();
+                    var copyBtn = document.querySelector('.copy-btn');
+                    copyBtn.textContent = '已复制';
+                    setTimeout(function() {
+                        copyBtn.textContent = '复制代码';
+                    }, 2000);
+                } catch (err) {
+                    console.error('复制失败', err);
+                }
             }
-        }
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
+    
