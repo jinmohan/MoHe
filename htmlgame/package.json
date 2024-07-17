@@ -1,0 +1,28 @@
+{
+  "main": "index.html",
+  "name": "Simulator",
+  "description": "指令学习",
+  "version": "0.1.0",
+  "keywords": [  "指令学习", "在线"],
+  "window": {
+    "title": "指令学习",
+    "icon": "logo.png",
+    "toolbar": false,
+    "frame": false,
+    "width": 1090,
+    "height": 750,
+    "position": "center",
+    "min_width": 1090,
+    "min_height": 750,
+    "max_width": 1920,
+    "max_height": 1080,
+    "resizable": true
+  },
+  "webkit": {
+    "plugin": false,
+    "java": false,
+    "page-cache": false
+  },
+  "user-agent": "%name %ver %nwver %webkit_ver %osinfo",
+  "chromium-args": "--allow-file-access-from-files"
+}

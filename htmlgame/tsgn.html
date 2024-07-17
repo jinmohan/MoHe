@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: linear-gradient(to right, #6a85b6, #bac8e0);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-container h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .login-container input[type="password"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: calc(100% - 20px);
+            box-sizing: border-box;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            outline: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            color: #333;
+        }
+        .login-container input[type="password"]::placeholder {
+            color: #666;
+        }
+        .login-container button {
+            padding: 12px 24px;
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition-delay: 0.2s;
+        }
+        .login-container button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .login-container button:active {
+            transform: scale(0.95);
+        }
+        .error-message {
+            color: #FF4D4F;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            transform: translateY(20px);
+        }
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .login-container.active h2,
+        .login-container.active input[type="password"],
+        .login-container.active button {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginContainer">
+        <h2>#最主要功能</h2>
+        <input type="password" id="password" placeholder="Password加微信5RMB">
+        <button onclick="checkPassword()">Login</button>
+        <p id="error-message" class="error-message">Incorrect password, please try again.</p>
+    </div>
+    <script>
+        const correctPassword = "1024"; // 在这里设置固定密码
+        const loginContainer = document.getElementById('loginContainer');
+        const errorMessage = document.getElementById('error-message');
+
+        setTimeout(() => {
+            loginContainer.classList.add('active');
+        }, 100);
+
+        function checkPassword() {
+            const passwordInput = document.getElementById('password').value;
+            if (passwordInput === correctPassword) {
+                window.location.href = 'main.html'; // 跳转到主界面
+            } else {
+                errorMessage.classList.add('show');
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
