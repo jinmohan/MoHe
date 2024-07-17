@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="picture/favicon.png" type="image/x-icon">
+    <title>墨盒</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow: hidden;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        nav {
+            width: 55px;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.7);
+            transition: width 0.3s;
+        }
+
+        nav:hover {
+            width: 155px;
+        }
+
+        .logo {
+            margin: 20px;
+            width: 100px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        ul li {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, padding-left 0.3s;
+        }
+
+        ul li:hover {
+            background-color: rgba(87, 87, 87, 0.9);
+            padding-left: 20px;
+        }
+
+        ul li img {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            transition: transform 0.3s;
+        }
+
+        ul li span {
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+
+        nav:hover ul li span {
+            opacity: 1;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section img {
+            width: 150px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            transform: scale(1.05);
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-container .btn {
+            flex: 1 1 calc(50% - 30px);
+            margin: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <!-- Logo 区域 -->
+        <div>
+            <img src="picture/logo.png" class="logo" alt="Logo">
+        </div>
+        <!-- 导航菜单 -->
+        <ul>
+            <!-- 主页 -->
+            <li onclick="showSection('about')"> 
+                <img src="picture/My.svg" alt="M"> <!-- 图标 -->
+                <span>主页</span> <!-- 文字说明 -->
+            </li>
+            <!-- 我的成果 -->
+            <li onclick="showSection('achievements')"> 
+                <img src="picture/D.svg" alt="H"> <!-- 图标 -->
+                <span>我的成果</span> <!-- 文字说明 -->
+            </li>
+            <!-- Ai -->
+            <li onclick="showSection('websites')"> 
+                <img src="picture/SHOU.svg" alt="S"> <!-- 图标 -->
+                <span>Ai</span> <!-- 文字说明 -->
+            </li>
+            <!-- 摸鱼 -->
+            <li onclick="showSection('games')"> 
+                <img src="picture/M.svg" alt="M"> <!-- 图标 -->
+                <span>摸鱼</span> <!-- 文字说明 -->
+            </li>
+        </ul>
+    </nav>
+    
+
+    <div class="content">
+        <div id="about" class="section active">
+            <h2>主页</h2>
+            <img src="picture/avatar.png" alt="Avatar">
+            <p>你好，我是Aumh，这里是我的网站</p>
+            <a href="https://space.bilibili.com/1597566435?spm_id_from=333.1007.0.0" target="_blank" class="btn">访问我的b站</a>
+            <div class="btn-container"></div>
+            <button class="btn" onclick="openPage('zyhq/zyhq.html')">UP主资源提取</button>
+        </div>
+        <div id="achievements" class="section">
+            <h2>我的成果</h2>
+            <p>本人会使用java&SpringCloud&Redis&Mysqi&RabbitMQ&Python&C++&Web&html<p>
+            <p>APP：Nex Web&MH-Ai&资源魔盒&墨核</p>
+            <a href="https://space.bilibili.com/1597566435?spm_id_from=333.1007.0.0" target="_blank" class="btn">访问我的b站</a>
+            <div class="btn-container"></div>
+            <button class="btn" onclick="openPage('htmlgame/welcome.html')">网站服务器后台</button>
+        </div>
+        <div id="websites" class="section">
+            <h2>Ai</h2>
+            <p>收集了目前还算比较好用的Ai</p>
+            <a href="https://share.freegpts.org/list" target="_blank" class="btn">Ai1</a>
+            <a href="https://agi.ylsap.com" target="_blank" class="btn">Ai2</a>
+            <a href="https://chat4.free2gpt.xyz/" target="_blank" class="btn">Ai3</a>
+            <a href="https://2en8.ai8988.top/c.html" target="_blank" class="btn">Ai4</a>
+        </div>
+        <div id="games" class="section">
+            <h2>摸鱼</h2>
+            <p>目前功能正在完善</p>
+            <a href="http://zn.y8.com" target="_blank" class="btn">网络游戏</a>
+                <button class="btn" onclick="openPage('htmlgame/mhxz.html')">墨核旋转</button>
+                <button class="btn" onclick="openPage('htmlgame/dzmy.html')">电子木鱼</button>
+                <button class="btn" onclick="openPage('htmlgame/mnygl.html')">木乃伊归来</button>
+                <button class="btn" onclick="openPage('htmlgame/elsfk.html')">俄罗斯方块</button>
+                <button class="btn" onclick="openPage('htmlgame/3dmf.html')">3D魔方</button>
+                <button class="btn" onclick="openPage('htmlgame/zzkf.html')">....正在开发</button>
+                <button class="btn" onclick="openPage('htmlgame/tsgn.html')">付费功能</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 随机选择背景图片
+        function setRandomBackground() {
+            const totalImages = 36;
+            const randomIndex = Math.floor(Math.random() * totalImages) + 1;
+            document.body.style.backgroundImage = `url('background/background${randomIndex}.jpg')`;
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(function (section) {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function openBaidu() {
+            window.open('https://www.aumh.top', '_blank');
+        }
+
+        function openPage(page) {
+            window.open(page, '_blank');
+        }
+
+        // 设置初始背景
+        setRandomBackground();
+
+        // 定时更换背景图片（每隔14秒）
+        setInterval(setRandomBackground, 14000);
+    </script>
+</body>
+
+</html>
+<!新手小白第一次开发网站很多功能做的不好有BUG是正常的。如有发现bug可以向哔哩哔哩反馈，或给我发微信我的微信号：base64：QXVtaHpo    ->
+<!-- 
+
+░░░░░░░░░░░▄▄       　                                                                                     　▃▆█▇▄▖
+░░░░░░░░░░░█░█　                                                                           　 　         ▟◤▖　　　◥█▎
+░░░░░░░░░░░█░█                                                                                     　 ◢◤　 ▐　　　 　▐▉
+░░░░░░░░░░█░░█　                                                                                    ▗◤　　　▂　▗▖　▕█▎
+░░░░░░░░░█░░░█                                                                                   　◤　▗▅▖◥▄　▀◣　　█▊
+██████████░░░██████▄                                                                             ▐　▕▎◥▖◣◤　　　◢██
+▓▓▓▓▓▓█░░░░░░░░░░░░█                                                                             █◣　◥▅█▀　　　 　▐██◤
+▓▓▓▓▓▓█░░░░░░░░░░░░█                                                                             ▐█▙▂　　     　◢██◤
+▓▓▓▓▓▓█░░░░░░░░░░░░█                                                                             ◥██◣　　　　◢▄◤
+▓▓▓▓▓▓█░░░░░░░░░░░░█ 　                                                                              　▀██▅▇▀
+▓▓▓▓▓▓█░░░░░░░░░░░░█
+▓▓▓▓▓▓█████░░░░░░░░█
+██████████████████▀
+
+
+←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_← ←_←
+
+
+
+███████████████████
+█                 █
+█  ██         ██  █
+█  ██         ██  █
+█  ██         ██  █
+█  ██         ██  █
+█                 █
+█     ▅▅▅▅ ㅤ  █
+█                 █
+███████████████████
+
+
+
+
+
+#202407161444
+-->
