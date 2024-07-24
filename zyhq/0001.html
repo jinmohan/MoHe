@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源获取站点</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 10px;
+            max-width: 900px; /* 修正了 max-width 的值 */
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 20px; /* 修正了 padding 的值 */
+            border: 2px solid #333;
+            border-radius: 24px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+        }
+        .code-wrapper {
+            margin-bottom: 20px;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        pre {
+            margin: 0;
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 5px;
+            background-color: #2d2d2d;
+            color: #ffffff;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 14px;
+            color: #dcdcdc;
+        }
+        .copy-btn {
+            background-color: #7e7e7ead;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #e68900;
+        }
+        .visit-btn {
+            background-color: #71c6ee;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .visit-btn:hover {
+            background-color: #4bbaf1;
+        }
+        .visit-btn:active {
+            background-color: #a4d9f8;
+        }
+        h1 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #cccccc;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到资源获取站点</h1>
+        <p>首先感谢bzyapp大佬的软件支持</p>
+        <p>ↆↆↆↆↆↆↆↆ获取学习应用示例代码</p>
+    </header>
+
+    <section>
+        <div class="code-wrapper">
+            <pre><code id="code-snippet">
+                &lt;bug实在是太难修了如果要代码还是私信我吧如果你想帮助我那就更好了&gt;
+
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode('code-snippet')">复制</button>
+        </div>
+        <a href="https://www.123pan.com/s/tP0Mjv-xEr5v.html" target="_blank" class="visit-btn">下载</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Aumh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyCode(elementId) {
+            var codeBlock = document.getElementById(elementId);
+            var range = document.createRange();
+            range.selectNodeContents(codeBlock);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            
+            try {
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                var copyBtn = document.querySelector('.copy-btn');
+                copyBtn.textContent = '已复制';
+                setTimeout(function() {
+                    copyBtn.textContent = '复制代码';
+                }, 2000);
+            } catch (err) {
+                console.error('复制失败', err);
+            }
+        }
+    </script>
+</body>
+</html>
